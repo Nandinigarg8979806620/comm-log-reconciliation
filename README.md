@@ -8,14 +8,14 @@ This repository reconciles Finance's `target_base` for merchant `501`, October 2
 
 1. Download `comm_log.db` from the assignment's supporting-data folder.
 2. Put it at `data/comm_log.db` (the database is deliberately ignored by Git so the repository contains only the analysis).
-3. Run the SQL in `sql/reconciliation.sql` against SQLite. It returns a single row with `target_base = 22`.
-4. Run `sql/reconciliation_bridge.sql` to reproduce the audit trail below.
+3. Run the SQL in `reconciliation.sql` against SQLite. It returns a single row with `target_base = 22`.
+4. Run `reconciliation_bridge.sql` to reproduce the audit trail below.
 
 If the SQLite command-line client is available:
 
 ```sh
-sqlite3 data/comm_log.db < sql/reconciliation.sql
-sqlite3 data/comm_log.db < sql/reconciliation_bridge.sql
+sqlite3 data/comm_log.db < reconciliation.sql
+sqlite3 data/comm_log.db < reconciliation_bridge.sql
 ```
 
 ## Reconciliation bridge
@@ -41,5 +41,5 @@ The useful distinction is not delivery success versus failure: failures still id
 
 ## Files
 
-- `sql/reconciliation.sql` - final query; returns the reported number.
-- `sql/reconciliation_bridge.sql` - executable version of the three-step bridge.
+- `reconciliation.sql` - final query; returns the reported number.
+- `reconciliation_bridge.sql` - executable version of the three-step bridge.
