@@ -10,12 +10,15 @@ This repository reconciles Finance's `target_base` for merchant `501`, October 2
 2. Put it at `data/comm_log.db` (the database is deliberately ignored by Git so the repository contains only the analysis).
 3. Run the SQL in `reconciliation.sql` against SQLite. It returns a single row with `target_base = 22`.
 4. Run `reconciliation_bridge.sql` to reproduce the audit trail below.
+5. Optionally run `reconciliation_breakdown.sql` and `validation_checks.sql` for a per-lineage proof and edge-case checks.
 
 If the SQLite command-line client is available:
 
 ```sh
 sqlite3 data/comm_log.db < reconciliation.sql
 sqlite3 data/comm_log.db < reconciliation_bridge.sql
+sqlite3 data/comm_log.db < reconciliation_breakdown.sql
+sqlite3 data/comm_log.db < validation_checks.sql
 ```
 
 ## Reconciliation bridge
@@ -43,3 +46,5 @@ The useful distinction is not delivery success versus failure: failures still id
 
 - `reconciliation.sql` - final query; returns the reported number.
 - `reconciliation_bridge.sql` - executable version of the three-step bridge.
+- `reconciliation_breakdown.sql` - shows the independently auditable `10 + 7 + 5 = 22` lineage contributions.
+- `validation_checks.sql` - returns PASS/FAIL checks for the lifecycle, retry, standalone-repeat, and final-total rules.
