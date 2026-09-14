@@ -1,0 +1,8 @@
+# Assignment source data is downloaded separately from the provided Drive folder.
+data/*.db
+data/*.csv
+
+# Local tooling
+.DS_Store
+__pycache__/
+
